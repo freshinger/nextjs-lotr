@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { volumes } from "../../../lib/data";
+import { volumes } from "../../lib/data";
+import { useRouter } from 'next/router';
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
-  const { slug } = await params
+export default function BookDetail() {
+
+  const router = useRouter();
+
+  const slug = router.query.slug
   const book = volumes.filter(volume => volume.slug === slug)[0];
   const index = volumes.indexOf(book);
   const books = book.books.map( (book, index) => 

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { introduction, volumes } from "../../lib/data";
 
-export default function Page() {
+export default function Index() {
   const volumeItems = volumes.map( (volume, index) => 
-  <li key={index}><Link href={'/volumes/'+volume.slug}>{volume.title}</Link></li>);
+  <li key={index}><Link href={'/volumes/'+encodeURIComponent(volume.slug)}>{volume.title}</Link></li>);
 
   const randomIndex = Math.floor(Math.random() * volumes.length);
 
@@ -17,7 +17,7 @@ export default function Page() {
           {volumeItems}
         </ul>
         <hr></hr>
-        <Link href={'/volumes/'+volumes[randomIndex].slug}>Random Volume</Link>
+        <Link href={'/volumes/'+encodeURIComponent(volumes[randomIndex].slug)}>Random Volume</Link>
     </main>
   );
 }
